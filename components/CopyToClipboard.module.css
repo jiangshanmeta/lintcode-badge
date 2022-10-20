@@ -1,0 +1,7 @@
+.main:hover {
+  color: #12B4FF;
+}
+
+.mouse:focus {
+  outline: none;
+}
