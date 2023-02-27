@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component Footer should match snapshot 1`] = `"<footer><div class="MuiBox-root MuiBox-root-1"><span class="MuiTypography-root MuiTypography-caption MuiTypography-alignCenter">Built on top of <a class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary" href="https://lintcode.com/">LintCode.com</a> and <a class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary" href="https://shields.io/">Shields.io</a><br>by <a class="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary" href="https://github.com/jiangshanmeta">jiangshanmeta</a></span></div></footer>"`;
