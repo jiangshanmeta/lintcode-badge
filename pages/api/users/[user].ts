@@ -18,21 +18,24 @@ const handler = async (req:NextApiRequest,res:NextApiResponse)=>{
     try{
         const userInfo = await new Promise<LintCodeResponse>((resolve,reject)=>{
             https.get(`https://www.lintcode.com/v2/api/accounts/${userName}/dashboard/`,
-            (res2)=>{
-                res2.setEncoding('utf8');
-                let rawData = ''
-                res2.on('data', (chunk) => {
-                  rawData += chunk
-                })
-                res2.on('end', () => {
-                    try {
-                        const parsedData = JSON.parse(rawData);
-                        resolve(parsedData);
-                    } catch (e) {
-                        reject(e)
-                    }
-                })
+                (res2)=>{
+                    res2.setEncoding('utf8');
+                    let rawData = ''
+                    res2.on('data', (chunk) => {
+                        rawData += chunk
+                    })
+                    res2.on('end', () => {
+                        try {
+                            const parsedData = JSON.parse(rawData);
+                            resolve(parsedData);
+                        } catch (e) {
+                            reject(e)
+                        }
+                    })
 
+        
+                }).on('error',(e)=>{
+                reject(e)
             })
         })
 
@@ -50,19 +53,21 @@ const handler = async (req:NextApiRequest,res:NextApiResponse)=>{
             problem_count
         } = userInfo.data
 
-        res.status(200).json({
-            name:userName,
-            rank:user_rank,
-            solved:ac_problem_count,
-            solvedOverTotal:`${ac_problem_count}/${problem_count}`,
-            solvedPercentage:`${((ac_problem_count / problem_count) * 100).toFixed(1)}%`,
-            error:null,
-        });
+        res
+            .status(200)
+            .json({
+                name:userName,
+                rank:user_rank,
+                solved:ac_problem_count,
+                solvedOverTotal:`${ac_problem_count}/${problem_count}`,
+                solvedPercentage:`${((ac_problem_count / problem_count) * 100).toFixed(1)}%`,
+                error:null,
+            });
         
     }catch(err){
         res.status(200).json({
             name:userName,
-            error:err
+            error:(err as Error).message
         });
     }
 
