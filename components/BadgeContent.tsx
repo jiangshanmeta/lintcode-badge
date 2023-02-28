@@ -1,7 +1,5 @@
 import {
-    Checkbox,
     FormControl,
-    FormControlLabel,
     FormLabel,
     InputLabel,
     MenuItem,
@@ -88,23 +86,6 @@ const BadgeContent: FC<{
                 )}
             </Select>
         </FormControl>
-        {/* TODO I din't find lintcode logo yet */}
-        {/* <FormControlLabel
-      control={
-        <Checkbox
-          checked={badge.showLogo}
-          onChange={({ target: { checked: showLogo } }) =>
-            setBadge((b) => ({ ...b, showLogo }))
-          }
-          name="showLogo"
-          color="primary"
-        />
-      }
-      style={{ marginTop: "24px" }}
-      label="Show logo"
-    /> */}
-
-
     </FormControl>
 );
 
