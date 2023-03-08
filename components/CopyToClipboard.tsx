@@ -4,11 +4,12 @@ import { Box, Tooltip, Zoom } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import copy from "copy-to-clipboard";
 import { FC, useEffect, useState } from "react";
+
 import styles from "./CopyToClipboard.module.css";
 
 const COPY_TO_CLIPBOARD = "Copy to clipboard";
 
-const useDarkStyle = makeStyles((theme) => ({
+const useDarkStyle = makeStyles(() => ({
     arrow: {
         color: "#212121",
     },
@@ -24,7 +25,7 @@ const CopyToClipboard: FC<{
 }> = ({ icon, label, textToCopy }) => {
     const [tooltipOpen, setTooltipOpen] = useState(false);
     const [tooltipText, setTooltipText] = useState(COPY_TO_CLIPBOARD);
-    const [mouseDown, setMouseDown] = useState(true);
+
     const classes = useDarkStyle();
 
     useEffect(() => {
@@ -34,18 +35,7 @@ const CopyToClipboard: FC<{
         return () => clearTimeout(tId);
     }, [tooltipOpen]);
 
-    useEffect(() => {
-        const mousedownListener = () => setMouseDown(true);
-        document.addEventListener("mousedown", mousedownListener);
 
-        const keydownListener = () => setMouseDown(false);
-        document.addEventListener("keydown", keydownListener);
-
-        return () => {
-            document.removeEventListener("mousedown", mousedownListener);
-            document.removeEventListener("keydown", keydownListener);
-        };
-    }, []);
 
     return (
         <Tooltip
@@ -69,12 +59,13 @@ const CopyToClipboard: FC<{
                     cursor: "pointer"
                 }}
 
-                className={`${styles.main} ${mouseDown ? styles.mouse : ""}`}
+                className={styles.main}
                 onClick={() => {
                     copy(textToCopy);
                     setTooltipText("Copied!");
                 }}
                 tabIndex={0}
+                data-testid="CopyToClipboardBox"
             >
                 <FontAwesomeIcon icon={icon} size="2x" />
                 <span style={{ fontWeight: 400 }}>{label}</span>
