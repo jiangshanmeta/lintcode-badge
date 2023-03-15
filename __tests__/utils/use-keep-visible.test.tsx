@@ -3,7 +3,6 @@ import { useRef } from 'react';
 import useKeepVisible from 'utils/use-keep-visible'
 
 import {
-    act,
     fireEvent,
     render,
     screen,
@@ -26,7 +25,7 @@ const TestComponent:React.FC = ()=>{
 
 describe('useKeepVisible',()=>{
 
-    beforeEach(()=>{
+    afterEach(()=>{
         fireEvent.scroll(window,{target:{scrollY:0}})
     })
 
