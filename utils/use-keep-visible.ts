@@ -16,16 +16,17 @@ const useKeepVisible = <T extends HTMLElement>(
             resetScrollListener.current = () => {
                 window.removeEventListener("scroll", adjustElementTop.current);
                 element.style.top = "0px";
+                // 元素到顶部的距离
                 initialOffsetTop.current = element.offsetTop;
                 adjustElementTop.current = () => {
+                    // scrollY 已经滚动的 innerHeight 一屏高度
                     const visibleTop = window.scrollY + window.innerHeight;
-                    element.style.top =
-            Math.min(
-                0,
-                Math.round(
-                    visibleTop - initialOffsetTop.current - height - bottomOffset
-                )
-            ) + "px";
+                    element.style.top = Math.min(
+                        0,
+                        Math.round(
+                            visibleTop - initialOffsetTop.current - height - bottomOffset
+                        )
+                    ) + "px";
                 };
                 adjustElementTop.current();
                 window.addEventListener("scroll", adjustElementTop.current);
