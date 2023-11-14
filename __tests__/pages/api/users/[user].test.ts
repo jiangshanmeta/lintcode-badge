@@ -40,7 +40,7 @@ describe('api user works',()=>{
         } as unknown as NextApiResponse )
         
         expect(spyHttps).toBeCalledTimes(1)
-        expect(spyHttps.mock.calls[0][0]).toBe('https://www.lintcode.com/v2/api/accounts/jiangshanmeta/dashboard/')     
+        expect(spyHttps.mock.calls[0][0]).toBe('https://apiv1.lintcode.com/new/api/accounts/jiangshanmeta/dashboard/')     
 
 
         expect(statusSpy).toBeCalledTimes(1)

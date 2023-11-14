@@ -17,7 +17,7 @@ const handler = async (req:NextApiRequest,res:NextApiResponse)=>{
 
     try{
         const userInfo = await new Promise<LintCodeResponse>((resolve,reject)=>{
-            https.get(`https://www.lintcode.com/v2/api/accounts/${userName}/dashboard/`,
+            https.get(`https://apiv1.lintcode.com/new/api/accounts/${userName}/dashboard/`,
                 (res2)=>{
                     res2.setEncoding('utf8');
                     let rawData = ''
